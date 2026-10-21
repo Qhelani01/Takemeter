@@ -42,6 +42,12 @@
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
 
+TakeMeter sorts comments from [r/movies](https://www.reddit.com/r/movies/), a
+large public subreddit for general film discussion, into three labels:
+`analysis`, `hot_take` and `reaction`. The line it's built around is whether a
+comment *backs up* its point with something checkable, or just asserts it. The
+intended use is sorting a large batch of comments without reviewing each one,
+mainly to pull out the comments that argue with evidence.
 
 
 ---
@@ -137,10 +143,25 @@ stress test:
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:**
+**Where the posts came from:** Public r/movies comments collected through
+Reddit's public RSS feeds in October 2026 (no login). Three batches:
+
+- 100 recent comments from across the subreddit (my Milestone 1 reading)
+- Comments from the week's and month's top threads, capped at 25 per thread
+  (20 per thread in the final file) so no single news story dominates
+- 120 longer comments (30+ words) from Discussion-flaired threads, added
+  because the first two batches had very few posts long enough to be
+  `analysis`
+
+I skipped `Official Discussion [SPOILERS]` threads, deleted comments, bot
+comments and link-only comments, and removed exact duplicates. 405 posts were
+collected. [sources.csv](sources.csv) records the thread each one came from.
 
 **How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
 Say so plainly — the disclosure is required, not penalised. -->
+
+_In progress._ The first 20 rows of `labels.csv` (marked `cold`) are labelled
+first, by me alone, with no tools.
 
 **Counts per label:**
 
@@ -183,9 +204,11 @@ Say so plainly — the disclosure is required, not penalised. -->
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:** `distilbert-base-uncased`
 
-**Settings:** <!-- epochs, learning rate, batch size, seed -->
+**Settings:** <!-- epochs, learning rate, batch size, seed --> _Planned, not yet
+run:_ notebook defaults: 3 epochs, learning rate 2e-5, batch size 16, 128
+tokens per post, seed 42. Device: `mps` (Apple Silicon GPU), per `test.py`.
 
 **Anything I changed from the defaults, and why:**
 
@@ -218,7 +241,22 @@ of next unit's variance. -->
 - *What came back:*
 - *What I changed:*
 
-**Pre-labelling disclosure:**
+**Pre-labelling disclosure:** _None yet._
+
+**AI use so far (log, to choose the two moments from):**
+
+- **Milestone 1:** Claude collected 100 recent r/movies comments and drafted
+  the four candidate distinctions in [community_notes.md](community_notes.md)
+  from them.
+- **Milestone 2:** Claude drafted the three label definitions, the examples
+  and the decision rule. It also wrote 8 boundary posts as a stress test. Five
+  didn't classify cleanly, which added the rules about nominated titles,
+  sarcasm, humor and anecdotes.
+- **Milestone 3:** A separate LLM acted as a coach. It asked about intended
+  use and gave facts about the measurements. I chose each target from options
+  Claude laid out. The coach helped word the reasons.
+- **Milestone 4:** Claude wrote the RSS collection scripts and built
+  `labels.csv` and `sources.csv`.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
