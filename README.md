@@ -54,33 +54,79 @@
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### `analysis`
 
-**Definition:**
-
-**Example 1:**
->
-
-**Example 2:**
->
-
-### `label_two`
-
-**Definition:**
+**Definition:** Makes a point and backs it with at least one specific, checkable
+fact offered as support: a number, a date, a named person or title, or a quoted
+line.
 
 **Example 1:**
->
+> That's the curse of Animation. They definitely had boots on the ground for a
+> sequel and 4 years turnaround is basically ASAP these days and it already may
+> be too late. But I think Animation is lucky though as it's timeless and will
+> always appeal to the next generation. Frozen, Zootopia, Moana and Inside Out
+> pushed out sequels 7-10 years later and each of those were huge successes.
 
 **Example 2:**
->
+> It's estimated that 50,000,000 people are trapped in human trafficking rings
+> across the globe. It generates billions of dollars, and is usually engaged with
+> by people with enough money to skirt (or bribe) the law. […] It's not normal
+> that a man could go to France and save his daughter from trafficking rings all
+> on his own, but it IS a thing that some women (and even men) are kidnapped and
+> taken against their will to work or be held for ransom.
+
+### `hot_take`
+
+**Definition:** States a judgment or claim someone could disagree with (about a
+film, a person, or the industry) without offering a specific, checkable fact to
+support it.
+
+**Example 1:**
+> It's fantasy. It's not a realistic portrayal of human trafficking at all.
+
+**Example 2:**
+> It works regardless. Good stories are like that.
+
+### `reaction`
+
+**Definition:** Expresses a feeling, or just names a title or line, without making
+a claim anyone could argue with.
+
+**Example 1:**
+> Hell yeah!
+
+**Example 2:**
+> God damn, that sounds cool.
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `analysis` and `hot_take`
+
+The borderline post:
+> I don't think it would've seen the same level of success had it gone to
+> cinemas. It got no marketing and was practically quietly dropped. It was pure
+> word of mouth and the convenience of straight to streaming allowed it to find a
+> humongous audience at an exponential rate.
+
+It argues and gives reasons, and the reasons *sound* factual. But none of them
+is specific.
 
 **The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
+A reason only counts as support if it names something specific a reader could
+look up: a number, a date, a named person or title, or a quoted line. General
+statements that only sound factual ("got no marketing", "everything's a franchise
+now") don't count, so the post above is `hot_take`. Three more rules from the
+stress test:
+
+- **The nominated thing isn't support.** In "best X" threads, the title or
+  quote being nominated doesn't count. "Heat. Coffee shop scene. Nothing comes
+  close." is `hot_take`. A bare "Home Alone" is `reaction`.
+- **Label sarcasm by what it means.** "Yeah, because Taken is SO realistic" is
+  a judgment (Taken is unrealistic), so it's `hot_take`. A joke with no
+  judgment in it is `reaction`.
+- **A personal anecdote isn't a checkable fact.** "I saw it opening night and
+  the whole theater gasped" with no claim attached is `reaction`. With a claim
+  attached and nothing else to support it, it's `hot_take`.
 
 
 
