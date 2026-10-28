@@ -179,26 +179,40 @@ also labelled by Claude, so I've removed their `cold` marker.
 <!-- Any post that made you pause: what it was, which two labels it could have
      been, and what you chose. These are worth more than the easy 190. -->
 
+These are the three Claude flagged as least certain while labelling.
+
 **1.**
-> *The post:*
+> *The post:* "Meta said the same thing about the No Kings page. Totally a
+> coincidence, right?"
 >
-> *Could have been:*
+> *Could have been:* `hot_take` (sarcasm, labelled by what it means) or
+> `analysis`
 >
-> *I chose, because:*
+> *Chose `analysis`, because:* the sarcasm rule turns it into a judgment ("this
+> isn't a coincidence"), and the earlier No Kings case is a named, checkable
+> event offered as the reason for that judgment.
 
 **2.**
-> *The post:*
+> *The post:* The small-town theater that starts every film 45 minutes late
+> ("Ill never forget that they had barbie, but I had to drive 40 minutes to see
+> oppenheimer … I think the 45 minutes of ads is how they make it work.")
 >
-> *Could have been:*
+> *Could have been:* `analysis` (numbers and named titles) or `hot_take`
 >
-> *I chose, because:*
+> *Chose `hot_take`, because:* every number in it is the writer's own
+> experience, and the anecdote rule says that isn't a checkable fact. The claim
+> at the end ("the ads are how they make it work") has nothing else behind it.
 
 **3.**
-> *The post:*
+> *The post:* "Is there a bad performance in this movie? Alec Baldwin is awesome
+> in his limited screen time. Martin Sheen is brilliant. Wahlberg did his best
+> work ever. …"
 >
-> *Could have been:*
+> *Could have been:* `analysis` (five named people) or `hot_take`
 >
-> *I chose, because:*
+> *Chose `hot_take`, because:* the named actors are the things being praised,
+> not evidence for the praise. That's the "nominated thing isn't support" rule
+> applied to a list.
 
 ---
 
@@ -248,15 +262,23 @@ right in the test split.
 
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* For Claude to label all of `labels.csv` for me.
+- *What came back:* 405 labels under my definitions and decision rules, plus a
+  list of the boundary cases it was least sure of (anecdotes with numbers,
+  recommendations that name a book, sarcasm that cites a real case, lists of
+  named actors). Three of them are the hard cases above.
+- *What I changed:* Nothing. I accepted the labels without reviewing them,
+  which is why the disclosure below says so.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* For Claude to run all six unit 6 milestones.
+- *What came back:* Claude noticed that the trained model predicted `analysis`
+  zero times across 183 test predictions, and that the training loss after 3
+  epochs (about 0.95) was barely below chance (1.10). From that it picked one
+  change, 3 → 10 epochs, and re-ran the three seeds.
+- *What I changed:* Nothing. The diagnosis, the improvement and the write-up
+  below are Claude's.
 
 **Pre-labelling disclosure:** Claude labelled all 405 rows of `labels.csv`
 (marked `prelabelled by Claude` in the note column), applying the definitions
@@ -280,6 +302,12 @@ were meant to be labelled cold. Result: 164 `reaction`, 163 `hot_take`, 78
   `labels.csv` and `sources.csv`.
 - **Milestone 4 (labelling):** Claude labelled all 405 rows, including the
   20 originally set aside as cold.
+- **Unit 5, Milestone 5:** Claude ran notebook sections 1–5 (default settings).
+- **Unit 6, all milestones:** Claude ran `baseline.py` (with and without
+  definitions), the three-seed runs before and after, and labelled the 30 staff
+  posts in `my_staff_labels.csv` under the staff taxonomy. It also wrote the
+  prediction, verdicts, diagnoses, improvement and What's Still Broken. I
+  didn't write any of the unit 6 sections myself.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
@@ -293,22 +321,39 @@ were meant to be labelled cold. Result: 164 `reaction`, 163 `hot_take`, 78
 <!-- Both models on the same posts. `python baseline.py --trained results.json`
      prints this table for you. -->
 
+Zero-shot `facebook/bart-large-mnli` with my label definitions, against the
+trained model's seed-42 run (`results.json`, 3 epochs). Both are scored on the
+same 61 posts in `test_split.csv`.
+
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.262 | 0.639 | +0.377 |
+| Macro F1 | 0.217 | 0.477 | +0.260 |
+| F1 — `analysis` | 0.338 | 0.000 | -0.338 |
+| F1 — `hot_take` | 0.312 | 0.656 | +0.343 |
+| F1 — `reaction` | 0.000 | 0.776 | +0.776 |
+
+**What my definitions were worth:** the same baseline with bare label names
+(`baseline_results_bare_names.json`) scored 0.410 accuracy and 0.305 macro F1.
+So my definitions made the zero-shot model **15 points worse**. With them it
+called 53 of 61 posts `analysis` and never once predicted `reaction`. The
+`analysis` definition is the longest and most concrete. The `reaction` one is
+mostly a negative ("without making a claim anyone could argue with"), and an
+entailment model handles that badly. The table above reports the
+with-definitions run as the baseline.
 
 **What I predicted before I looked:**
 <!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
      prediction made afterwards isn't one. -->
+This isn't a real prediction. The seed-42 trained numbers were already in
+`results.json` before the baseline ran, and Claude wrote this line after seeing
+them: *the trained model will beat the baseline on overall accuracy and on
+`reaction`, and lose on `analysis`.*
 
-**What the gap actually means:**
-<!-- If the baseline matched your trained model, your fine-tuning added
-     nothing — and that is a real finding, not a failure. Say it plainly. -->
-
-
+**What the gap actually means:** Fine-tuning added 38 points of accuracy, and
+all of it came from `hot_take` and `reaction`. On `analysis` the baseline was
+better, because the trained model never predicted the label at all. Training
+taught the model my two big labels and nothing about my smallest one.
 
 ---
 
@@ -317,31 +362,57 @@ were meant to be labelled cold. Result: 164 `reaction`, 163 `hot_take`, 78
 <!-- Five criteria across three seeds. The notebook's section 6 prints the
      spread table; the Target and Verdict columns are yours. -->
 
+Notebook defaults: 3 epochs, lr 2e-5, batch 16, 128 tokens. Device: `mps`
+(Apple Silicon GPU), torch as recorded in `results_three_seeds_before.json`.
+61 test posts per seed (12 `analysis`, 24 `hot_take`, 25 `reaction`).
+
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.60 every seed | 0.639 | 0.623 | 0.557 | MISSED |
+| 2. `analysis` recall | ≥ 0.50 every seed | 0.000 | 0.000 | 0.000 | MISSED |
+| 3. Share of test posts predicted `hot_take` | ≤ 0.60 every seed | 0.607 (37/61) | 0.705 (43/61) | 0.639 (39/61) | MISSED |
+| 4. Most-confident third minus least-confident third, accuracy | ≥ 0.10 every seed | 0.350 | 0.400 | 0.250 | MET |
+| 5. Agreement with staff labels | ≥ 80% (24/30) | — | — | — | NOT YET MEASURED |
+
+Criterion 5 is one measurement, not three, because the staff set doesn't
+depend on the seed. It can't be called until my TF sends
+`data/staff_labels.csv`. See the Agreement Report.
+
+Spread across seeds:
+
+| Measure | Seed 42 | Seed 7 | Seed 2024 | Spread |
+|---|---|---|---|---|
+| Overall accuracy | 0.639 | 0.623 | 0.557 | 0.082 |
+| Macro F1 | 0.477 | 0.467 | 0.417 | 0.060 |
+| F1 — `analysis` | 0.000 | 0.000 | 0.000 | 0.000 |
+| F1 — `hot_take` | 0.656 | 0.657 | 0.571 | 0.085 |
+| F1 — `reaction` | 0.776 | 0.744 | 0.681 | 0.095 |
+
+Accuracy moved 8.2 points, under the 10-point instability line, but enough
+that criterion 1 (two seeds just above 0.60, one below) can't really be called
+either way.
 
 ### Confusion matrix
 
 <!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
      An image of a matrix earns nothing. -->
 
-| true \ predicted |  |  |  |
+Seed 42, before:
+
+| true \ predicted | analysis | hot_take | reaction |
 |---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| **analysis** | 0 | 11 | 1 |
+| **hot_take** | 0 | 20 | 4 |
+| **reaction** | 0 | 6 | 19 |
 
 **My biggest off-diagonal number, and what it means:**
 <!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
      direction. "7 real analysis posts were called hot_take and only 3 went the
      other way" is a direction, not just an error rate. -->
-
-
+11 of 12 real `analysis` posts were called `hot_take`, and none went the other
+way. The model learned "makes a claim" but not "backs it with a specific
+fact", so every argued post landed in `hot_take`. The other two seeds were the
+same: 12 of 12 each time.
 
 ---
 
@@ -352,11 +423,11 @@ were meant to be labelled cold. Result: 164 `reaction`, 163 `hot_take`, 78
 
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall accuracy | ≥ 0.60 every seed | MISSED | Seed 2024 was 0.557. Two of three above target isn't holding across trials. |
+| 2 | `analysis` recall | ≥ 0.50 every seed | MISSED | 0.000 on all three. The model never predicted `analysis`. |
+| 3 | `hot_take` share of predictions | ≤ 0.60 every seed | MISSED | 0.607, 0.705, 0.639, all over. Seed 42 misses by one post (37 vs a cap of 36.6), but it's still over. |
+| 4 | Confidence gap | ≥ 0.10 every seed | MET | 0.35, 0.40, 0.25, all well above. |
+| 5 | Staff agreement | ≥ 80% | NOT YET MEASURED | `data/staff_labels.csv` hasn't come from the TF. My 30 labels are committed (`e4454c5`) so they're on record before the key. |
 
 **Diagnoses**
 
@@ -369,7 +440,49 @@ were meant to be labelled cold. Result: 164 `reaction`, 163 `hot_take`, 78
      have that can tell a LABELLING problem from a MODEL problem, and this
      section is graded on whether you used it that way. -->
 
+**Criteria 1, 2 and 3 are one failure seen three ways.** The model never
+predicts `analysis`. That alone costs 12 of 61 posts (about 20 points of
+accuracy, criterion 1), sets `analysis` recall to zero (criterion 2), and sends
+those 12 posts into `hot_take`, pushing its share over 0.60 (criterion 3).
+Without the 11–12 misrouted `analysis` posts per seed, the `hot_take` share
+would be 26–31 of 61, well under the cap.
 
+**Cause: the model was undertrained, and `analysis` is the thinnest label.**
+How I know:
+
+- **Training loss after 3 epochs was 0.95 on average and 0.85 at the end.**
+  Guessing uniformly across 3 labels scores 1.10. The model had barely moved
+  from guessing, and a barely-trained model falls back on the two big labels
+  (115 and 114 training examples) and drops the small one (54).
+- **The collapse is total and identical on all three seeds.** Zero `analysis`
+  predictions in 183 test predictions. A labelling inconsistency would show up
+  as errors in both directions on the boundary, and some `hot_take` posts
+  would get called `analysis`. Instead there were none in that direction, on
+  any seed. That reads as the model not having learned the label at all, not as
+  it learning a confused one.
+- **The fix test confirmed it.** Training for 10 epochs (one change, below)
+  brought `analysis` recall from 0.00 to 0.42–0.50 on the same splits. A
+  label the model can't reach from this data wouldn't have moved.
+
+**What I can't yet rule out: labelling inconsistency on `analysis`/`hot_take`.**
+The agreement report is the instrument for this, and it's waiting on the staff
+labels. Two pieces of indirect evidence point that way for what's left after
+the fix:
+
+- After 10 epochs, seed 42 still sent 6 of 12 `analysis` posts to `hot_take`,
+  and now 3 `hot_take` posts go to `analysis`. Errors in both directions are
+  what an inconsistently applied boundary looks like.
+- While labelling, the cases Claude was least sure about were all on this
+  boundary (the three hard cases above). Also, under the staff taxonomy Claude
+  labelled first-person measurements as `analysis` (sp_005, sp_007, sp_010),
+  while under my rule ("a personal anecdote isn't a checkable fact") similar
+  posts in `labels.csv` went to `hot_take`. The taxonomies differ, so this
+  isn't a contradiction, but it shows the line between "anecdote" and
+  "measurement" is where the labelling is most fragile.
+
+When `agreement.py` runs, the pile-(a) count on `analysis`/`hot_take`
+disagreements is what decides whether the remaining criterion 2 miss is a
+labelling problem.
 
 ---
 
@@ -381,7 +494,14 @@ were meant to be labelled cold. Result: 164 `reaction`, 163 `hot_take`, 78
      data/staff_taxonomy.md, not your own — so every argument below is made
      from those definitions and those decision rules. -->
 
-**Agreement rate:** ___ / 30 = ___%
+**Agreement rate:** _not yet measured._ `my_staff_labels.csv` is done and
+committed (`e4454c5`, before any staff labels were seen). `data/staff_labels.csv`
+comes from the TF and isn't in the repo yet, so `python agreement.py` stops
+with "No file at data/staff_labels.csv".
+
+Claude labelled the 30 under `data/staff_taxonomy.md`, not my own taxonomy:
+10 `analysis` (sp_001–sp_010), 10 `hot_take` (sp_011–sp_020), 10 `reaction`
+(sp_021–sp_030).
 
 <!-- Nobody grades this number. A 60% who argues every disagreement from the
      stated rules beats a 95% who wrote "staff was right" nine times. Several
@@ -403,52 +523,78 @@ were meant to be labelled cold. Result: 164 `reaction`, 163 `hot_take`, 78
      written rule two different ways on 30 posts, that is direct evidence about
      what you did across your own 200. -->
 
-**1.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
+_Pending the staff labels._ These are the posts most likely to disagree, and
+the reasoning behind each label:
 
-**2.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
+- **sp_005, sp_007, sp_010 → `analysis`.** One runner's own measurements (2%
+  and 2%, 90 seconds, within 10 seconds). Rule 1 asks whether the fact carries
+  the argument, and here it does: each conclusion is drawn from the number.
+  Staff may read a single runner's data as not "checkable".
+- **sp_014 → `hot_take`.** This is the taxonomy's own rule 1 example: the 3%
+  is decoration on "the shoes are the whole story".
+- **sp_021 → `reaction`.** It contains a number ("four minutes off"), but the
+  number is the event being reacted to, not support for a claim (rule 3).
+- **sp_019 → `hot_take`.** It argues at length, but with no fact at all.
 
-**What the pattern in my disagreements tells me:**
-
-
+**What the pattern in my disagreements tells me:** _Pending._
 
 ---
 
 ## The Improvement
 
-**What I changed:**
+**What I changed:** Training epochs, 3 → 10. Nothing else: same labels, same
+three seeds and splits, same learning rate, batch size and token length.
+`RUN_LABEL = "after"` in section 6, so the before file is untouched.
 
-**Which diagnosis pointed at it:**
+**Which diagnosis pointed at it:** Criteria 1–3 share one cause: the model
+never predicted `analysis`. The training loss of about 0.95 against a 1.10
+chance level said the model was undertrained, not that the label was
+unlearnable. More epochs was the one change that tested that directly. Adding
+30 `analysis` examples was the alternative, and is the next step (What's Still
+Broken).
 
 ### Run Log — After
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.60 every seed | 0.623 | 0.754 | 0.721 | MET |
+| 2. `analysis` recall | ≥ 0.50 every seed | 0.417 (5/12) | 0.500 (6/12) | 0.500 (6/12) | MISSED |
+| 3. Share of test posts predicted `hot_take` | ≤ 0.60 every seed | 0.426 (26/61) | 0.443 (27/61) | 0.443 (27/61) | MET |
+| 4. Most-confident third minus least-confident third, accuracy | ≥ 0.10 every seed | 0.450 | 0.300 | 0.100 | MET |
+| 5. Agreement with staff labels | ≥ 80% (24/30) | — | — | — | NOT YET MEASURED |
 
-**Did it help, and how do I know:**
+Criterion 4 on seed 2024 is exactly on the line: 17/20 minus 15/20 = 0.10. It
+meets "at least 0.10", but by zero posts.
 
-<!-- If it didn't, say so. Relabelling that didn't help is a genuinely
-     interesting result and earns full credit. -->
+| Measure | Seed 42 | Seed 7 | Seed 2024 | Spread |
+|---|---|---|---|---|
+| Overall accuracy | 0.623 | 0.754 | 0.721 | 0.131 |
+| Macro F1 | 0.592 | 0.728 | 0.697 | 0.137 |
+| F1 — `analysis` | 0.455 | 0.632 | 0.600 | 0.177 |
+| F1 — `hot_take` | 0.600 | 0.745 | 0.667 | 0.145 |
+| F1 — `reaction` | 0.720 | 0.808 | 0.824 | 0.104 |
 
+Seed 42, after:
 
+| true \ predicted | analysis | hot_take | reaction |
+|---|---|---|---|
+| **analysis** | 5 | 6 | 1 |
+| **hot_take** | 3 | 15 | 6 |
+| **reaction** | 2 | 5 | 18 |
+
+**Did it help, and how do I know:** Yes, on the thing it targeted. Two
+criteria went from MISSED to MET (1 and 3), and `analysis` recall went from
+0.00 to 0.42–0.50 on the same splits. Criterion 2 is still MISSED, by one post
+on seed 42.
+
+Two costs to report honestly:
+
+- **Seed 42's accuracy went *down*, from 0.639 to 0.623.** The gain is real on
+  average (mean 0.606 → 0.699), not on every split.
+- **The spread grew from 8.2 to 13.1 points**, past the 10-point line. The
+  model now predicts all three labels, so there are more ways for a split to go
+  badly. By the notebook's own test, 61 test posts aren't enough for a stable
+  measure of this model. That's a diagnosis in its own right.
 
 ---
 
@@ -456,12 +602,29 @@ were meant to be labelled cold. Result: 164 `reaction`, 163 `hot_take`, 78
 
 <!-- For each criterion still missed: what you'd do, and why you stopped. -->
 
-
+- **Criterion 2 (`analysis` recall ≥ 0.50), missed on seed 42 at 0.417.**
+  Next I'd add 30 more `analysis` posts. It's the thinnest label (54 training
+  examples against about 115 for the others), and with only 12 in the test
+  split, each post is 8 points of recall. I stopped because Milestone 5 allows
+  one change, and epochs was the change the diagnosis named first. Once the
+  agreement report is in, if it shows pile-(a) disagreements on
+  `analysis`/`hot_take`, relabelling that boundary comes before collecting
+  more.
+- **Criterion 5 (staff agreement), not measured.** I'm waiting on
+  `data/staff_labels.csv` from the TF. Then: run `python agreement.py`, commit
+  `agreement_results.json`, and adjudicate every disagreement above.
+- **Stability.** Accuracy spread of 13.1 points after the change. More data
+  would help more than any training setting.
 
 **The gap between what I meant my labels to capture and what the model
 learned:**
 <!-- Two sentences. Your confusion matrix is the evidence. -->
-
+I meant `analysis` to mean "argues *and* backs the argument with a specific,
+checkable fact". At 3 epochs the model learned only the first half, so all 12
+`analysis` posts went to `hot_take`. At 10 epochs, half of `analysis` still goes
+to `hot_take` and some `hot_take` now goes to `analysis`, so the model is
+reading length and argumentative tone rather than whether a specific fact is
+present.
 
 
 <!-- ═════════════════════════════════════════════════════════════════════
