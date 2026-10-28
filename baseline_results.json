@@ -1,0 +1,339 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 61,
+  "seed": 42,
+  "held_out": true,
+  "used_definitions": true,
+  "scores": {
+    "n": 61,
+    "accuracy": 0.26229508196721313,
+    "f1_macro": 0.2169871794871795,
+    "per_label": {
+      "analysis": {
+        "precision": 0.20754716981132076,
+        "recall": 0.9166666666666666,
+        "f1": 0.3384615384615385,
+        "support": 12
+      },
+      "hot_take": {
+        "precision": 0.625,
+        "recall": 0.20833333333333334,
+        "f1": 0.3125,
+        "support": 24
+      },
+      "reaction": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 25
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "And also asian?",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Both cuts of kingdom of Heaven",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Absolutely. I had so much fun watching it. If you like any fairytale that includes an outsider protagonist falling in love with some kind of magical person/entity/creature, and fighting back against conformity, then you'll love this. If you're not sure, you can also read the short story that it's based on: The Wicker Husband by Ursula Wills. Also, I recommend watching the filmmakers short film from 2017 called \"Snowy Bing Bongs Across The North Star Combat Zone\". It's not related to Wicker, but it's fun to see where they started out.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Remember when Elon went a huge rant about how Twitter should be a place of free speech and free media, defended by the first amendment? And how they wouldn\u2019t censor opinions? And we all kind of knew that just meant he could use it as a propaganda machine, but that he was using free speech as an excuse to get his way? Well that same guy banning accounts based on free speech used against him by his personal opponents sure is a bad look after all that noise\u2026",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "She\u2019s in jail right now telling someone how she\u2019s not in jail",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I see that the January 6 documentary \u201c4 Hours at the Capitol\u201d is labeled as \u201cleaving soon\u201d off of HBO Now. I\u2019d be skeptical too about a Musk documentary making it on there.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Politics aside why the fuck would you rsvp for a protest? Bro you just show up. They don't tell you to leave if you are not on the list. This isn't a wedding reception. There is no reason to sign up unless you wanna end up on a list and that list isn't gonna be maintained by the people organizing the protest.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "They were also suspending people who had RSVP'd to protests. Totally a coincidence.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "It's crazy that Affleck and Damon are in a new movie together, that also has Steven Yeun in it whom I really like, and this is the first I'm hearing of it.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "same shit as alway, consequences are a slap on the wrist",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Which is true in many forms of media/entertainment. Look at the recent criticisms leveled at the video game industry of hand holding and games practically playing themselves. That\u2019s been happening for years, the people complaining about it are just getting more attention as the issue becomes more egregious and the games become more expensive.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Man, Amazon's UA is on a tear!",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Maybe that will be like Mid to late 2027",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I reactivated my Facebook here in the US for the first time in about 6 months and my feed has been almost exclusively right-wing talking heads like Matt Gaetz and pro-MAGA groups. Nothing on my page has ever hinted at me being in support of those idiots.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "The Mummy 1999. It wasn\u2019t really billed as A tier blockbuster. It positioned itself as a B tier popcorn flick. Mixing genres between horror, action, adventures and comedy. Usually recipe for disaster. But they absolutely nailed it. It\u2019s an A+ tier movie, and holds up incredibly well in 2026 still. Top tier action, pacing, casting, funny. It\u2019s still one of the best action adventure films in history.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Meta said the same thing about the No Kings page Totally a coincidence, right?",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Oh man the Rock is really showing his age here. He looks so done and tired . Did Jack Black shaved? or is that the CGI the makes actors look younger?",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "This honestly falls in line with Lego Movie being OP's example. Anything Lord and Miller do are typically things that are better than they have any right to be. Cloudy With a Chance of Meatballs, 22 Jump St (insanely good for a comedy sequel), even Project Hail Mary having just as great a reception as the book it was based on. They even wrote and produced the Spider-verse movies, which, people are accustomed to loving them now just as much or more so than any other Spider-Man movie- but at the time many didn't believe in it much and it ended up shocking everyone with how good it was.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "how is this spicy lol",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "WHAT THE HELL IS WRONG WITH YOU PEOPLE!?",
+      "gold": "reaction",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "I suppose it helps the organizers more accurately gauge how popular it's getting beforehand. Easier to get more people on-board when you can show the protest already has however many hundreds or thousands of people planning to go.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "There ... there's an already competent human cook he can train up? Collette is already trained by a visionary culinary master, she can pick up more from Remy. Also, the rats and the co-owners of Ratatouille (Linguine, Collette, and Anton Ego) are the only ones that know Remy is the chef there. If anyone found out, they would be closed fown by the health department again",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The accidental fascist.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I\u2019m very been reading about campfire theory. Where like if you have a campfire, people come and go, some stay for ages, and some drift in and out. It sucks, but has made me accept how some people come and go, but the times they\u2019re at the campfire are awesome.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "If it's consistent, nobody will show up to watch the ads. It's likely intentional (Hanlon's razor notwithstanding)",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "https://youtu.be/H_yWxB9VW0c?is=d49pNVYw5fParO04 This is my favorite",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "That's the curse of Animation. They definitely had boots on the ground for a sequel and 4 years turnaround is basically ASAP these days and it already may be too late. But I think Animation is lucky though as it's timeless and will always appeal to the next generation. Frozen, Zootopia, Moana and Inside Out pushed out sequels 7-10 years later and each of those were huge successes.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Breaking in at guard shift change; seems like a time when you have double the guards. And when we're most alert as we are excited to leave or getting ready to start a shift.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I don\u2019t understand how you keep repeating the same 3 points over and over and over but you somehow make them longer. Is there a word count you\u2019re trying to hit or do you have some sort of short term memory loss, where you forget you\u2019re now repeating yourself for a fourth time? Holy shit that edit is the bleakest thing I\u2019ve ever seen. Youre trying HARD to convince a stranger on reddit you have friends. That\u2019s just sad lol",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "a 'tank'",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "From what I understand, trafficking young women into prostitution looks a lot less like it does in this movie and more like\u2026. Picture this: a young woman has run away from home, cutting ties from her family (perhaps they were abusive and she wanted to escape them). She meets a handsome guy and they start dating. He showers her with attention and she falls in love. But then, at some point maybe she suggests he hook up with one of his buddies. He starts pressuring and coercing her, turning to emotional manipulation and abuse, often compiling blackmail material as well to keep her from running. By this point he may have also gotten her dependent on drugs. These women have no support systems and nowhere to turn for help The notion of randomly kidnapping well off women and selling them into slavery and prostitution? Yeah that isn\u2019t happening the way movies would have you believe it is",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "No shit. After Spider-Man: Brand New Day came out, the amount of posts I saw that were asking questions about why certain things happened throughout, I was like, \"Did these mother fuckers even watch the movie?\"",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Right \"error\"",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Recreating the From Dusk Till Dawn experience from first principals.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Mummy Dearest (2027)",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Why would they if you keep subbing?",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Woops, I dropped my monster condom, that I use for my wicker dong.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "And all the Bene Gesserit screaming \"whores!\" everytime the Matres are on screen or even mentioned",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I always think about cop movies, Dirty Harry, Beverly Hills Cop, Lethal Weapon, Rush Hour and the like, and the shear amount of investigations, paperwork, police reports, internal affairs reviews, depositions, lawsuits, trials...that would come down immediately following the exploits happening in the movie.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Crap-dangit, this sucks!!",
+      "gold": "reaction",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Like when I lived in Elizabethtown, Kentucky, and Orlando Bloom and Kirsten Dunst were set to film a movie called Elizabethtown there. I was so disappointed that most of the filming was done in Radcliff and Frankfort. They did like 1-2 scenes in Elizabethtown!",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Look at their stock, it matters a lot. It's down since the start of the year. They're not having a good year, that's why some people are getting fired.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "It seems like she has the type of narcissism that she believes, no matter what her circumstances are, she is in the absolute best position possible. Charles Manson was like that. I saw an interview with him where he talked about how prison was nothing, because they can't put bars in his mind, so they can't put bars around him, so in effect he's not really in a prison. HlThese people are so full of themselves that they can rationalise anything into being the best, simply because they are the ones doing it at that moment.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "It may not be the platforms doing it. It could be bots funded by Musk submitting a ton of fake reports.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The classic answer to this is The Forty Year Old Virgin. Man is coerced into selling a lifetime of cherished valuables to invest in an independent brick and mortar electronics store at probably the single worst time in history to do so. This was unwise even at the time, utterly disastrous in retrospect.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The desert has not been kind to Paul.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Just rewatched it last night. It holds up really well for being like 25 years old. It\u2019s the perfect balance of campy fun, humor, action, drama, suspense. Even the Easter eggs for the ride are woven in seamlessly.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I've deep fried a handful of pizzas before. By far the best ones are actually the cheapy ones that cost basically nothing. I think there might be less moisture in them so the batter adheres better.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I've done a reasonable amount of yacht crewing on sailing passages in the North Sea and did have one experience where the weather felt comparable to the storm in the film. I was about 16 at the time on a 72ft/22m yacht with a crew of about 16 people split into two groups doing four-hour watches. Biggest sustained adrenaline rush of my life and definitely the most dangerous conditions I've ever been in - three of us had to crawl up to the bow at one point to take down one of the headsails in 10-metre waves, it was like being on a giant rollercoaster plunging down into the abyss during each trough. We were completely flattened on the deck and clinging on for dear life as the spray and bow-waves were breaking over us. This was with lifejackets, oilskins, and safety harnesses - I cannot imagine how hard it would have been in the old days having to go up into the rigging to take down topsails where you're being thrown around 20x more at that height and having to do it with no safety equipment or proper gear on slippery wood with no real grip and loose rigging ropes. Weirdly I'd probably find it more scary now because as a teenager I just had faith that everyone knew what they were doing and were in control of the situation - where now I feel I'd be a lot less confident in the people around me to some degree!",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Ditto but the comic book Ragnorok.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "There is a great documentary on the making of Master and Commander on Youtube https://www.youtube.com/watch?v=rgQpWBdY098&list=PLEM8CDGBvkM3YEGDzR-yJ444a0HBFjcKP&index=1 I love the book series (2 circumnavigations under my belt) but the challenges of making it into a proper TV series would be daunting. It would need a GOT budget to do it justice.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I HAVE PEOPLE SKILLS!!",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Perhaps you should research real life trafficking to better understand. It is not at all like in this or any other movie really. Tourists don't get kidnapped like this for large scale trafficking rings, and women don't get snatched out of walmart parking lots like the moms of tiktok would have you believe. Actually trafficking exploits far more vulnerable people, usually the very poor, and oftentimes when a woman or child is sold off by their poor family.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "It's estimated that 50,000,000 people are trapped in human trafficking rings across the globe. It generates billions of dollars, and is usually engaged with by people with enough money to skirt (or bribe) the law. The perpetrators of such crimes will not be so easily tracked. Burner phones, off-grid transactions, and tight security around assets is the norm in that business. It's not normal that a man could go to France and save his daughter from trafficking rings all on his own, but it IS a thing that some women (and even men) are kidnapped and taken against their will to work or be held for ransom.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Shit I remember Red Eye. Always stood out to me because we had it in one of those really thin DVD cases which I thought was weird. He gets stabbed in the neck with a pen right? That scene creeped me out as a kid. For some reason I had no idea it was Cillian Murphy, in my mind\u2019s eye it was always that one scrawny nerdy tech guy from\u2026 shit, Criminal Minds? Reed? That guy.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Lmao same I was like wait a new Skarsg\u00e5rd has dropped?!?!",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The scene on the roof with Martin Sheen - you can see the moment on his face when he realizes what\u2019s going to happen\u2026 it was incredible acting. All of them were fantastic. Including smaller roles. Vera Farmiga.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The fact that Zoolander hit theaters only two and a half weeks after 9/11 happened and still was able to have the cultural impact it did really says something about what a masterpiece it is.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "These guys are quick.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I had to googs that. Worth it.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Musk spent a few hundred million to get Republicans elected and became the world's first trilliknaire, on top of killing half a dozen federal agencies investigating his crimes. As long as we let them do it they will. We need to make bribery illegal again.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    }
+  ]
+}
