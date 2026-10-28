@@ -169,10 +169,10 @@ also labelled by Claude, so I've removed their `cold` marker.
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| `reaction` | 164 | 40% |
+| `hot_take` | 163 | 40% |
+| `analysis` | 78 | 19% |
+| **Total** | 405 | 100% |
 
 **Three hard cases**
 
@@ -208,15 +208,30 @@ also labelled by Claude, so I've removed their `cold` marker.
 
 **Base model:** `distilbert-base-uncased`
 
-**Settings:** <!-- epochs, learning rate, batch size, seed --> _Planned, not yet
-run:_ notebook defaults: 3 epochs, learning rate 2e-5, batch size 16, 128
-tokens per post, seed 42. Device: `mps` (Apple Silicon GPU), per `test.py`.
+**Settings:** <!-- epochs, learning rate, batch size, seed --> Notebook
+defaults: 3 epochs, learning rate 2e-5, batch size 16, 128 tokens per post,
+seed 42. Device: `mps` (Apple Silicon GPU). About 31 seconds of training.
 
-**Anything I changed from the defaults, and why:**
+**Anything I changed from the defaults, and why:** Nothing.
 
 **Split sizes:** <!-- train / val / test, and per-label counts in the test
 split. If a label had fewer than about 8 in test, say so — it explains a lot
-of next unit's variance. -->
+of next unit's variance. --> 283 train / 61 val / 61 test (stratified
+70/15/15).
+
+| Label | Train | Val | Test |
+|---|---|---|---|
+| `analysis` | 54 | 12 | 12 |
+| `hot_take` | 114 | 25 | 24 |
+| `reaction` | 115 | 24 | 25 |
+
+Every label has at least 8 test examples, but `analysis` has only 12, so its
+F1 will move the most between seeds.
+
+**First result (seed 42, `results.json`):** accuracy 0.639, macro F1 0.477.
+F1: `analysis` 0.000, `hot_take` 0.656, `reaction` 0.776. Most-confident third
+0.800 vs least-confident third 0.450. The model never got an `analysis` post
+right in the test split.
 
 
 
