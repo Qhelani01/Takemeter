@@ -160,10 +160,10 @@ collected. [sources.csv](sources.csv) records the thread each one came from.
 **How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
 Say so plainly — the disclosure is required, not penalised. -->
 
-_In progress._ The first 20 rows of `labels.csv` (marked `cold`) are labelled
-first, by me alone, with no tools. The other 385 were pre-labelled by Claude
-under the definitions and decision rules above (note column:
-`prelabelled by Claude`). I am reading and correcting every one of those.
+All 405 rows of `labels.csv` were labelled by Claude under the definitions and
+decision rules above (note column: `prelabelled by Claude`). None were
+labelled cold: the 20 rows originally set aside for me to label unaided were
+also labelled by Claude, so I've removed their `cold` marker.
 
 **Counts per label:**
 
@@ -243,11 +243,11 @@ of next unit's variance. -->
 - *What came back:*
 - *What I changed:*
 
-**Pre-labelling disclosure:** Claude pre-labelled the 385 non-cold rows of
-`labels.csv` (marked `prelabelled by Claude` in the note column), applying the
-definitions and the four decision rules in the Label Taxonomy. It did not
-label the 20 `cold` rows. First pass: 154 `hot_take`, 154 `reaction`, 77
-`analysis`. Review and corrections: _in progress._
+**Pre-labelling disclosure:** Claude labelled all 405 rows of `labels.csv`
+(marked `prelabelled by Claude` in the note column), applying the definitions
+and the four decision rules in the Label Taxonomy, including the 20 rows that
+were meant to be labelled cold. Result: 164 `reaction`, 163 `hot_take`, 78
+`analysis`. I have not yet reviewed or corrected them myself.
 
 **AI use so far (log, to choose the two moments from):**
 
@@ -263,7 +263,8 @@ label the 20 `cold` rows. First pass: 154 `hot_take`, 154 `reaction`, 77
   Claude laid out. The coach helped word the reasons.
 - **Milestone 4:** Claude wrote the RSS collection scripts and built
   `labels.csv` and `sources.csv`.
-- **Milestone 4 (labelling):** Claude pre-labelled the 385 non-cold rows.
+- **Milestone 4 (labelling):** Claude labelled all 405 rows, including the
+  20 originally set aside as cold.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
